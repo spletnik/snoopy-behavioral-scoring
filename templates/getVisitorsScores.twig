@@ -1,0 +1,32 @@
+<div class="dataTableWrapper">
+    <table cellspacing="0" class="dataTable">
+        <thead>
+            <tr>
+                <th class="sortable first label" id="label">
+                    <div id="thDIV" class="thDIV">Visitor</div>
+                </th>>
+                <th>
+                    <div id="thDIV" class="thDIV">Email</div>
+                </th>
+                <th class="sortable last columnSorted" id="score">
+                    <div id="thDIV" class="thDIV"><span class="sortIcon desc " width="16" height="16"></span>score</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in myData %}
+                <tr class="{{ row.status }}">
+                    <td class="label column" style="min-width: 145px; width: 259px;">
+                        <span class="label"><span class="value"><a target="_blank" href="/index.php?date={{ "now"|date("Y-m-d") }}&module=Widgetize&action=iframe&visitorId={{ row.idvisitor | lower }}&idSite={{ idSite }}&period=day&moduleToWidgetize=Live&actionToWidgetize=getVisitorProfilePopup">{{ row.idvisitor }}</a></span></span>
+                    </td>
+                    <td class="column">
+                        <span class="value" style="display: inline-block;">{{ row.email }}</span>
+                    </td>
+                    <td class="column">
+                        <span class="value" style="display: inline-block;">{{ row.score }} <span style="font-size: 130%" class="{{ row.icon }} {{ row.status }}"></span></span>
+                    </td>
+                </tr>
+            {% endfor %}                 
+        </tbody>
+    </table>                                    
+</div>

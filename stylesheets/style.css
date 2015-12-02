@@ -1,0 +1,19 @@
+span.cooling{
+	color: darkblue;
+}
+span.heating{
+	color: orangered;
+}
+span.new{
+	color: green;
+}
+
+table.dataTable tr.new td{
+	background-color: #EFFFEF;
+}
+table.dataTable tr.cooling td{
+	/*background-color: #EFF1FF;*/
+}
+table.dataTable tr.heating td{
+	background-color: #FFEFEF;
+}

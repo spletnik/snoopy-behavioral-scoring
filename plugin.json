@@ -1,0 +1,16 @@
+{
+    "name": "Snoopy",
+    "version": "0.1.0",
+    "description": "Match visitors from all webpages",
+    "theme": false,
+    "require": {
+        "piwik": ">=2.15.0"
+    },
+    "authors": [
+        {
+            "name": "Spletnik",
+            "email": "info@spletnik.si",
+            "homepage": "http:\/\/spletnik.si\/"
+        }
+    ]
+}
