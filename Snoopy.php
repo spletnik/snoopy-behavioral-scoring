@@ -40,7 +40,7 @@ class Snoopy extends \Piwik\Plugin {
                         updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                         created_at datetime DEFAULT NULL,
                         PRIMARY KEY (id),
-                        UNIQUE KEY UNIQUE (idvisitor)
+                        UNIQUE KEY (idvisitor)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ";
 			Db::exec($sql);
 
