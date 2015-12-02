@@ -44,7 +44,7 @@ class Snoopy extends \Piwik\Plugin {
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ";
 			Db::exec($sql);
 
-			$sql = "CREATE TABLE IF NOT EXIST " . Common::prefixTable("snoopy_visitors_statuses") . "(
+			$sql = "CREATE TABLE IF NOT EXISTS " . Common::prefixTable("snoopy_visitors_statuses") . "(
 						id int(11) NOT NULL AUTO_INCREMENT,
 						idvisitor varchar(45) DEFAULT NULL,
 						status varchar(45) DEFAULT NULL,
