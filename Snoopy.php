@@ -20,10 +20,12 @@ class Snoopy extends \Piwik\Plugin {
 			$sql = "CREATE TABLE IF NOT EXISTS " . Common::prefixTable("snoopy") . " (
                         id int(11) NOT NULL AUTO_INCREMENT,
                         idvisitor varchar(45) DEFAULT NULL,
-                        score int(11) DEFAULT NULL,
-                        updated_at timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                        score float DEFAULT NULL,
+                        updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                         created_at datetime DEFAULT NULL,
-                        PRIMARY KEY (id)
+                        PRIMARY KEY (id),
+                        KEY idvisitor_idx (idvisitor),
+			  			KEY id_idvisitor_idx (id,idvisitor)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ";
 			Db::exec($sql);
 
@@ -33,13 +35,22 @@ class Snoopy extends \Piwik\Plugin {
                         custom_1 varchar(255) DEFAULT NULL,
                         custom_2 varchar(255) DEFAULT NULL,
                         custom_3 varchar(255) DEFAULT NULL,
-                        custom_4 varchar(255) DEFAULT NULL,
+                        custom_4 TEXT DEFAULT NULL,
                         custom_5 TEXT DEFAULT NULL,
-                        updated_at timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                        updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                         created_at datetime DEFAULT NULL,
                         PRIMARY KEY (id),
-                        UNIQUE UNIQUE (idvisitor)
+                        UNIQUE KEY UNIQUE (idvisitor)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ";
+			Db::exec($sql);
+
+			$sql = "CREATE TABLE IF NOT EXIST " . Common::prefixTable("snoopy_visitors_statuses") . "(
+						id int(11) NOT NULL AUTO_INCREMENT,
+						idvisitor varchar(45) DEFAULT NULL,
+						status varchar(45) DEFAULT NULL,
+						PRIMARY KEY (id),
+						UNIQUE KEY idvisitor_uniq (idvisitor)
+					) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 			Db::exec($sql);
 
 		} catch (Exception $e) {
@@ -53,6 +64,7 @@ class Snoopy extends \Piwik\Plugin {
 	public function uninstall() {
 		Db::dropTables(Common::prefixTable("snoopy"));
 		Db::dropTables(Common::prefixTable("snoopy_visitors"));
+		Db::dropTables(Common::prefixTable("snoopy_visitors_statuses"));
 	}
 
 	public function activate() {

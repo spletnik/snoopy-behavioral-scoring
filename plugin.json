@@ -1,7 +1,7 @@
 {
     "name": "Snoopy",
     "version": "0.1.0",
-    "description": "Match visitors from all webpages",
+    "description": "Score visitors on webpages",
     "theme": false,
     "require": {
         "piwik": ">=2.15.0"

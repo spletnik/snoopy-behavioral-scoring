@@ -6,14 +6,14 @@ Plugin enables you to score your visitors based on actions they do on your websi
 
 ## FAQ
 
-__My question?__
+__Can i do that.__
 
-My answer
+Yes
 
 ## Changelog
 
-Here goes the changelog text.
+0.1.0 - Initial version
 
 ## Support
 
-Please direct any feedback to ...
+Please direct any feedback to info@spletnik.si
