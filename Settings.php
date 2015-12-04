@@ -6,16 +6,16 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-namespace Piwik\Plugins\Snoopy;
+namespace Piwik\Plugins\SnoopyBehavioralScoring;
 
 use Piwik\Settings\SystemSetting;
 use Piwik\Settings\UserSetting;
 
 /**
- * Defines Settings for Snoopy.
+ * Defines Settings for SnoopyBehavioralScoring.
  *
  * Usage like this:
- * $settings = new Settings('Snoopy');
+ * $settings = new Settings('SnoopyBehavioralScoring');
  * $settings->autoRefresh->getValue();
  * $settings->metric->getValue();
  */
@@ -27,7 +27,7 @@ class Settings extends \Piwik\Plugin\Settings {
 	public $matching_site;
 
 	protected function init() {
-		$this->setIntroduction('Setup Snoopy to match your needs.');
+		$this->setIntroduction('Setup Snoopy behavioral scoring to match your needs.');
 
 		$this->createMatchingSiteSetting();
 		$this->createStartTrackingSetting();

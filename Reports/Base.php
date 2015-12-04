@@ -6,14 +6,12 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
  */
-namespace Piwik\Plugins\Snoopy\Reports;
+namespace Piwik\Plugins\SnoopyBehavioralScoring\Reports;
 
 use Piwik\Plugin\Report;
 
-abstract class Base extends Report
-{
-    protected function init()
-    {
-        $this->category = 'General_Visitors';
-    }
+abstract class Base extends Report {
+	protected function init() {
+		$this->category = 'General_Visitors';
+	}
 }

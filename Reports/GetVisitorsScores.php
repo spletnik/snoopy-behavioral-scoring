@@ -6,7 +6,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-namespace Piwik\Plugins\Snoopy\Reports;
+namespace Piwik\Plugins\SnoopyBehavioralScoring\Reports;
 
 use Piwik\Piwik;
 use Piwik\Plugin\Report;
@@ -22,7 +22,7 @@ class GetVisitorsScores extends Base {
 	protected function init() {
 		parent::init();
 
-		$this->name = Piwik::translate('Snoopy_VisitorsScores');
+		$this->name = Piwik::translate('SnoopyBehavioralScoring_VisitorsScores');
 		$this->dimension = '';
 		$this->documentation = Piwik::translate('');
 
@@ -95,13 +95,13 @@ class GetVisitorsScores extends Base {
 	 *
 	 * @return string */
 	public function render() {
-		$view = new View('@Snoopy/getVisitorsScores');
+		$view = new View('@SnoopyBehavioralScoring/getVisitorsScores');
 		/*var_dump($view);
 		die;*/
-		$visitors = \Piwik\API\Request::processRequest('Snoopy.getVisitorsScores', array('format' => 'json'));
+		$visitors = \Piwik\API\Request::processRequest('SnoopyBehavioralScoring.getVisitorsScores', array('format' => 'json'));
 		$view->myData = json_decode($visitors); //array( 'label' => "label");
 
-		$settings = new \Piwik\Plugins\Snoopy\Settings();
+		$settings = new \Piwik\Plugins\SnoopyBehavioralScoring\Settings();
 		$idSite = $settings->matching_site->getValue();
 		$view->idSite = $idSite;
 

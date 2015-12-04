@@ -6,13 +6,13 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-namespace Piwik\Plugins\Snoopy;
+namespace Piwik\Plugins\SnoopyBehavioralScoring;
 
 use Piwik\Common;
 use Piwik\Db;
 use \Exception;
 
-class Snoopy extends \Piwik\Plugin {
+class SnoopyBehavioralScoring extends \Piwik\Plugin {
 	private static $table_name = "snoopy";
 
 	public function install() {
@@ -76,8 +76,8 @@ class Snoopy extends \Piwik\Plugin {
 	}
 
 	public function getStylesheetFiles(&$files) {
-		$files[] = "plugins/Snoopy/stylesheets/style.less";
-		$files[] = "plugins/Snoopy/stylesheets/style.css";
+		$files[] = "plugins/SnoopyBehavioralScoring/stylesheets/style.less";
+		$files[] = "plugins/SnoopyBehavioralScoring/stylesheets/style.css";
 	}
 
 	public function registerEvents() {

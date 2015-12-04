@@ -1,14 +1,20 @@
 {
-    "name": "Snoopy",
+    "name": "SnoopyBehavioralScoring",
     "version": "0.1.0",
-    "description": "Score visitors on webpages",
+    "description": "User behaviour scoring plugin for piwik. It allows you to score your visitors depending on goals reached, pages visited, email campaigns opened and other factors. It has a robust scoring methodology for heating and cooling visitor score.",
+    "keywords": ["behaviour score", "behavior score", "behaviour", "behavior", "snoopy", "score", "report", "lead scorinng", "behaviour scoring", "behavior scoring", "behavioral scoring"],
+    "license": "GPL v3+",
     "theme": false,
     "require": {
-        "piwik": ">=2.15.0"
+        "piwik": ">=2.15.0",
+        "php": ">=5.4.0"
+    },
+    "donate": {
+        "paypal": "srle@spletnik.si"
     },
     "authors": [
         {
-            "name": "Spletnik",
+            "name": "Spletnik Ltd",
             "email": "info@spletnik.si",
             "homepage": "http:\/\/spletnik.si\/"
         }
