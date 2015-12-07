@@ -6,7 +6,7 @@ Plugin enables you to score your visitors based on actions they do on your websi
 
 ## Installation
 ### Automatic
-Install it via Piwik Marketplace
+Install it via Piwik Marketplace and [configure](#configuration) plugin.
 ### Manual installation
 1. Download whole repository as ZIP.
 2. Go to your piwik Administration => Marketplace and click on "upload a plugin in .zip format."
