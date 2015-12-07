@@ -18,6 +18,7 @@ Now all you need to do is to set your configuration and create cron that calcula
 
 ## Configuration
 
+### Required
 Before Snoopy starts scooring visitors you first have to tweak some configuration to match your needs.
 
 1. Matching site
@@ -53,11 +54,24 @@ Those configuration parameters are mandatory for Snoopy to score propperly.
 
 When you are finished with configuration you just need to put this comand as your cronjob and Snoopy will start to calculate your score (This will recalcualte score hourly):
 
-**0 * * * * /piwik_root/console snoopy:recalculate-score**
+**0 * * * * /piwik_root/console snoopybehavioralscoring:recalculate-score**
 
 Additionally you can pipe log to file:
 
-**0 * * * * /piwik_root/console snoopy:recalculate-score >> /var/log/snoopy.log**
+**0 * * * * /piwik_root/console snoopybehavioralscoring:recalculate-score >> /var/log/snoopy.log**
+
+### Optional
+- Enable console full debug
+When runing recalculate-score some additional info is printed that could be usefull when debuging why score is not calculated properly.
+- Campaign entry bonus
+Bonus score that is added whn visitor visits your webpage trough campaign (Google Analytics campaign parameters are set)
+- Special URL's
+URL;SCORE pairs that make some of your URL's worth more score points. 
+
+For example 
+http://example.com/contact;3
+
+Here contact page is worth 3 points intead just one.
 ## FAQ
 
 __When does my visitors gets scored.__

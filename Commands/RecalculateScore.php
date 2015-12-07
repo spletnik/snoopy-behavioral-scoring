@@ -6,11 +6,11 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  */
 
-namespace Piwik\Plugins\Snoopy\Commands;
+namespace Piwik\Plugins\SnoopyBehavioralScoring\Commands;
 
 use Piwik\Common;
 use Piwik\Db;
-use Piwik\Plugins\Snoopy\Snoopy;
+use Piwik\Plugins\SnoopyBehavioralScoring\SnoopyBehavioralScoring;
 use Piwik\Plugin\ConsoleCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,7 +28,7 @@ class RecalculateScore extends ConsoleCommand {
 	 * as well as all options and arguments you expect when executing it.
 	 */
 	protected function configure() {
-		$this->setName('snoopy:recalculate-score');
+		$this->setName('snoopybehavioralscoring:recalculate-score');
 		$this->setDescription('RecalculateScore');
 		//$this->addOption('name', null, InputOption::VALUE_REQUIRED, 'Your name:');
 	}
@@ -48,7 +48,7 @@ class RecalculateScore extends ConsoleCommand {
 		/**
 		 * Settings for scooring
 		 */
-		$settings = new \Piwik\Plugins\Snoopy\Settings();
+		$settings = new \Piwik\Plugins\SnoopyBehavioralScoring\Settings();
 
 		/**
 		 * Which site we scoore
@@ -91,10 +91,10 @@ class RecalculateScore extends ConsoleCommand {
 		$output->writeln("<info>************************************************************************</info>");
 		$output->writeln("<info>Starting visitor scoring...</info>");
 		$output->writeln("<comment>Getting visitors to score...</comment>");
-		$visitors_to_score = \Piwik\API\Request::processRequest('Snoopy.getVisitorIdsToScore', array());
+		$visitors_to_score = \Piwik\API\Request::processRequest('SnoopyBehavioralScoring.getVisitorIdsToScore', array());
 
 		$previously_scored = Db::fetchAll(" SELECT DISTINCT idvisitor
-                                            FROM " . Common::prefixTable(Snoopy::getTableName()) . "
+                                            FROM " . Common::prefixTable(SnoopyBehavioralScoring::getTableName()) . "
                                             WHERE idvisitor IN('" . implode("','", $visitors_to_score) . "')
                                             ORDER BY id DESC");
 
@@ -109,7 +109,7 @@ class RecalculateScore extends ConsoleCommand {
 			}
 			$idvisitor = $scored_visitor['idvisitor'];
 			$scored_visitor = Db::fetchRow("SELECT *
-                                            FROM " . Common::prefixTable(Snoopy::getTableName()) . "
+                                            FROM " . Common::prefixTable(SnoopyBehavioralScoring::getTableName()) . "
                                             WHERE idvisitor = ?
                                             ORDER BY id DESC
                                             LIMIT 1", array($scored_visitor['idvisitor']));
@@ -255,7 +255,7 @@ class RecalculateScore extends ConsoleCommand {
 				$visitor_score = 0;
 			}
 
-			Db::query(" INSERT INTO " . Common::prefixTable(Snoopy::getTableName()) . " (idvisitor, score, created_at) VALUES(?,?,?)", array($idvisitor, $visitor_score, date("Y-m-d H:i:s")));
+			Db::query(" INSERT INTO " . Common::prefixTable(SnoopyBehavioralScoring::getTableName()) . " (idvisitor, score, created_at) VALUES(?,?,?)", array($idvisitor, $visitor_score, date("Y-m-d H:i:s")));
 
 			$output->writeln(sprintf('<error>Total goals: %s</error>', $total_goals));
 			$output->writeln(sprintf('<error>Visitor score: %s</error>', $visitor_score));
@@ -379,12 +379,12 @@ class RecalculateScore extends ConsoleCommand {
 				$visitor_score = 0;
 			}
 
-			Db::query("INSERT INTO " . Common::prefixTable(Snoopy::getTableName()) . " (idvisitor, score, created_at) VALUES(?,?,?)", array($idvisitor, $visitor_score, date("Y-m-d H:i:s")));
+			Db::query("INSERT INTO " . Common::prefixTable(SnoopyBehavioralScoring::getTableName()) . " (idvisitor, score, created_at) VALUES(?,?,?)", array($idvisitor, $visitor_score, date("Y-m-d H:i:s")));
 			$output->writeln(sprintf('<error>Total goals: %s</error>', $total_goals));
 			$output->writeln(sprintf('<error>Visitor score: %s</error>', $visitor_score));
 		}
-		\Piwik\API\Request::processRequest('Snoopy.storeVisitorsEmail', array());
-		\Piwik\API\Request::processRequest('Snoopy.storeHeatStatuses', array());
+		\Piwik\API\Request::processRequest('SnoopyBehavioralScoring.storeVisitorsEmail', array());
+		\Piwik\API\Request::processRequest('SnoopyBehavioralScoring.storeHeatStatuses', array());
 	}
 
 	private function calculateCooling($currentScore, $cool, $coolingFactor, $numberOfDays) {

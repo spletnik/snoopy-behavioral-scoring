@@ -225,7 +225,7 @@ class API extends \Piwik\Plugin\API {
 	}
 
 	public function findHeatStatus($idvisitor) {
-		$visitor_log = Db::fetchAll("SELECT * FROM " . Common::prefixTable("SnoopyBehavioralScoring") . " WHERE idvisitor = ? AND created_at >= NOW() - INTERVAL 2 DAY ORDER BY id DESC", array($idvisitor));
+		$visitor_log = Db::fetchAll("SELECT * FROM " . Common::prefixTable("snoopy") . " WHERE idvisitor = ? AND created_at >= NOW() - INTERVAL 2 DAY ORDER BY id DESC", array($idvisitor));
 		if (!empty($visitor_log)) {
 			$tmp = $visitor_log[0]['score'];
 
