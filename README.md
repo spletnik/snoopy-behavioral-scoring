@@ -62,17 +62,21 @@ Additionally you can pipe log to file:
 
 ### Optional
 - Enable console full debug
-When runing recalculate-score some additional info is printed that could be usefull when debuging why score is not calculated properly.
+
+When running recalculate-score some additional info is printed, that could be usefull when debuging why score is not calculated properly.
+
 - Campaign entry bonus
-Bonus score that is added whn visitor visits your webpage trough campaign (Google Analytics campaign parameters are set)
+
+Bonus score that is added when visitor visits your webpage trough campaign (Google Analytics campaign parameters are set)
 - Special URL's
+
 URL;SCORE pairs that make some of your URL's worth more score points. 
 
 For example:
 
 http://example.com/contact;3
 
-Here contact page is worth 3 points intead just one.
+Here contact page is worth 3 points instead just one.
 ## FAQ
 
 __When does my visitors gets scored.__
