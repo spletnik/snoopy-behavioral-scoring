@@ -51,11 +51,11 @@ Those configuration parameters are mandatory for Snoopy to score propperly.
 
 When you are finished with configuration you just need to put this comand as your cronjob and Snoopy will start to calculate your score (This will recalcualte score hourly):
 
-*0 * * * * /piwik_root/console snoopy:recalculate-score*
+**0 * * * * /piwik_root/console snoopy:recalculate-score**
 
 Additionally you can pipe log to file:
 
-*0 * * * * /piwik_root/console snoopy:recalculate-score >> /var/log/snoopy.log*
+**0 * * * * /piwik_root/console snoopy:recalculate-score >> /var/log/snoopy.log**
 ## FAQ
 
 __When does my visitors gets scored.__
