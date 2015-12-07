@@ -68,7 +68,8 @@ Bonus score that is added whn visitor visits your webpage trough campaign (Googl
 - Special URL's
 URL;SCORE pairs that make some of your URL's worth more score points. 
 
-For example 
+For example:
+
 http://example.com/contact;3
 
 Here contact page is worth 3 points intead just one.
