@@ -5,7 +5,9 @@
 Plugin enables you to score your visitors based on actions they do on your websites. You can easily distinguish users that are reguralliy active on your webapge from those that come just once.
 
 ## Installation
-
+### Automatic
+Install it via Piwik Marketplace
+### Manual installation
 1. Download whole repository as ZIP.
 2. Go to your piwik Administration => Marketplace and click on "upload a plugin in .zip format."
 3. After plugin is upladed press "Activate plugin"
