@@ -77,6 +77,47 @@ For example:
 http://example.com/contact;3
 
 Here contact page is worth 3 points instead just one.
+## API
+Snoopy also has API that can be used, to integrate it with third party apps and send some additional info to match know your visitors better.
+
+Here are all API available at the moment:
+
+- SnoopyBehavioralScoring.getVisitorsScores
+
+Returns scores for all visitors that has been scored
+- SnoopyBehavioralScoring.getVisitorIdsToScore
+
+Returns visitors ID's that has reaches goals that specify start of scoring.
+- SnoopyBehavioralScoring.getScore(idvisitor)
+
+Get score for specific visitor ID.
+- SnoopyBehavioralScoring.storeVisitorData (idvisitor, data)
+
+Store visitor data. Data is passed as json and can have 5 fields. (custom_1,custom_2, ... custom_5)
+
+custom_1 is reseved for email address.
+custom_5 is reserved for json info about visitor. If info includes email, it will be stored into custom_1 automatically.
+- SnoopyBehavioralScoring.getVisitorEmail(idvisitor)
+
+Returns email for specific visitor ID. 
+- SnoopyBehavioralScoring.getVisitorEmailFromJson(json_data)
+
+This method tries to find email in provided json. It recursively goes trough json and try to find emails. 
+- SnoopyBehavioralScoring.matchVisitorsEmail
+
+Loops trough all visitors and try to find their email addresses from json in custom_5 field. Email is not stored.
+- SnoopyBehavioralScoring.storeVisitorsEmail
+
+Stores visitor email address in custom_1 field. Email is find from json in custom_5 field.
+- SnoopyBehavioralScoring.findHeatStatus(idvisitor)
+
+Find heat status for specific visitor. If visitor's score is increased from past day than visitor is heating up, otherwise visitor is cooling down. Visitors that has the same score has either marked as new (score is same since last day and is not 0) or idle (score is 0)
+- SnoopyBehavioralScoring.storeHeatStatuses
+
+Find heat statuses for all visitors and store them.
+- SnoopyBehavioralScoring.heatStatus(idvisitor)
+
+Returns already stored heat status for specific visitor.
 ## FAQ
 
 __When does my visitors gets scored.__
@@ -85,6 +126,7 @@ When they reach specified goal in plugin settings.
 
 ## Changelog
 
+0.1.1 - Readme changes + minor fixes
 0.1.0 - Initial version
 
 ## Support
