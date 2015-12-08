@@ -2,7 +2,7 @@
 
 ## Description
 
-Plugin enables you to score your visitors based on actions they do on your websites. You can easily distinguish users that are reguralliy active on your webapge from those that come just once.
+Snoopy is a User behaviour scoring plugin for piwik. It allows you to score your visitors depending on goals reached, pages visited, email campaigns opened and other factors. In other words this plugin enables you to score your visitors based on actions they do on your website. It has a robust scoring methodology for heating and cooling visitor score.
 
 ## Installation
 ### Automatic
@@ -14,23 +14,23 @@ Install it via Piwik Marketplace and [configure](#configuration) plugin.
 
 If you did everything correct and you have sufficient permissions on folder plugins, Snoopy should be successfully installed.
 
-Now all you need to do is to set your configuration and create cron that calculate visitors scores.
+Now all you need to do is to set your configuration and create a cron that calculates visitors scores.
 
 ## Configuration
 
 ### Required
-Before Snoopy starts scooring visitors you first have to tweak some configuration to match your needs.
+Before Snoopy starts scoring visitors you first have to tweak some configuration to match your needs.
 
-1. Matching site
-You have to select for which site your Snoopy scores visitors. For now only one webpage tracking is available.
+1. Matching site:
+You have to select for which site your Snoopy scores visitors. For now only one website property tracking is available.
 
-2. Matching goal
-Snoopy will start scooring only when specific goal is achieved. You can choose one or more goals as entry point to start scooring.
+2. Matching goal:
+Snoopy will start scoring only when specific goal is achieved. You can choose one or more goals as entry point to start .ing.
 
-3. Cooling factor
+3. Cooling factor:
 Cooling factor is number that tells you how fast visitors will loose their score.
 
-Here is example simalation for factor 1.1
+Here is example simulation for factor 1.1
 
 |Number of inactive days|Current penalty|Penalty since beginning|Visitor scores	|
 |-----------------------|---------------|-----------------------|---------------|
