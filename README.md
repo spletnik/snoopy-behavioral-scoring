@@ -4,7 +4,7 @@
 
 Snoopy is a User behaviour scoring plugin for piwik. It allows you to score your visitors depending on goals reached, pages visited, email campaigns opened and other factors. In other words this plugin enables you to score your visitors based on actions they do on your website. It has a robust scoring methodology for heating and cooling visitor score.
 
-Snoopy also provides some basic API functions to integrate it with third party applications. More information about the API can be found on [github wiki](https://github.com/spletnik/snoopy-behavioral-scoring/wiki/API).
+Snoopy also provides some basic API functions to integrate it with third party applications souch as your CRM or lead management system. More information about the API can be found on [github wiki](https://github.com/spletnik/snoopy-behavioral-scoring/wiki/API).
 
 ## Installation
 ### Automatic
