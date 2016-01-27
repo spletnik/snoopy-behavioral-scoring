@@ -17,3 +17,7 @@ table.dataTable tr.cooling td{
 table.dataTable tr.heating td{
 	background-color: #FFEFEF;
 }
+
+.snoopy-behavioral-scoring div.dataTableWrapper{
+	width: 100% !important;
+}

@@ -75,6 +75,62 @@ class API extends \Piwik\Plugin\API {
 		return $table;
 	}
 
+	public function getVisitorsScores2() {
+		$table = new DataTable();
+		$settings = new \Piwik\Plugins\SnoopyBehavioralScoring\Settings();
+		$matching_site = $settings->matching_site->getValue();
+
+		$max_ids = Db::fetchAll("SELECT MAX(id) as id FROM " . Common::prefixTable(\Piwik\Plugins\SnoopyBehavioralScoring\SnoopyBehavioralScoring::getTableName()) . " GROUP BY idvisitor");
+		$max_ids_array = array();
+		foreach ($max_ids as $value) {
+			$max_ids_array[] = $value['id'];
+		}
+		$ids = implode(",", $max_ids_array);
+		$visitor_scores = Db::fetchAll("SELECT * FROM " . Common::prefixTable(\Piwik\Plugins\SnoopyBehavioralScoring\SnoopyBehavioralScoring::getTableName()) . "
+                                        WHERE id IN ($ids)");
+
+		//Create data to be used in report
+		$i = 0;
+		foreach ($visitor_scores as $visitor) {
+			$i++;
+			$email = Request::processRequest('SnoopyBehavioralScoring.getVisitorEmail', array('idvisitor' => $visitor['idvisitor'], 'format' => 'json'));
+			$status = Request::processRequest('SnoopyBehavioralScoring.heatStatus', array('idvisitor' => $visitor['idvisitor']));
+			$email = json_decode($email, true);
+			if (isset($email[0]['email'])) {
+				$email = $email[0]['email'];
+			} else {
+				$email = '/';
+			}
+			switch ($status) {
+			case 'cooling':
+				$icon = 'icon-arrow-bottom';
+				break;
+			case 'heating':
+				$icon = 'icon-arrow-top';
+				break;
+			case 'idle':
+				$icon = '';
+				break;
+			case 'new':
+				$icon = 'icon-plus';
+				break;
+			}
+			$table->addRowFromArray(array(
+				Row::COLUMNS => array(
+					'label' => $visitor['idvisitor'],
+					'idvisitor' => $visitor['idvisitor'],
+					'email' => $email,
+					'status' => $status,
+					'icon' => $icon,
+					'score' => $visitor['score'],
+				),
+				Row::METADATA => array(
+					'url' => $_SERVER['SERVER_NAME'] . '/index.php?date=' . date("Y-m-d") . '&module=Widgetize&action=iframe&visitorId=' . strtolower($visitor['idvisitor']) . '&idSite=' . $matching_site . '&period=day&moduleToWidgetize=Live&actionToWidgetize=getVisitorProfilePopup')));
+		}
+
+		return $table;
+	}
+
 	public function getVisitorIdsToScore() {
 		//$table = new DataTable();
 
