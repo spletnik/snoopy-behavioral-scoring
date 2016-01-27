@@ -28,13 +28,14 @@ class Settings extends \Piwik\Plugin\Settings {
 
 	protected function init() {
 		$this->setIntroduction('Setup Snoopy behavioral scoring to match your needs.');
-
-		$this->createMatchingSiteSetting();
-		$this->createStartTrackingSetting();
-		$this->createCoolingFactorSetting();
-		$this->createEnableFullConsoleDebugSetting();
-		$this->createCampaignEntrySetting();
-		$this->createSpecialUrlsSetting();
+		if (\Piwik\Piwik::hasUserSuperUserAccess()) {
+			$this->createMatchingSiteSetting();
+			$this->createStartTrackingSetting();
+			$this->createCoolingFactorSetting();
+			$this->createEnableFullConsoleDebugSetting();
+			$this->createCampaignEntrySetting();
+			$this->createSpecialUrlsSetting();
+		}
 	}
 	/**
 	 * Example functions
@@ -163,11 +164,11 @@ class Settings extends \Piwik\Plugin\Settings {
 		}
 
 		$this->matching_goals = new SystemSetting('matching_goals', 'Goals to start scoring');
-		$this->matching_goals->readableByCurrentUser = true;
+		//$this->matching_goals->readableByCurrentUser = true;
 		$this->matching_goals->type = static::TYPE_ARRAY;
 		$this->matching_goals->uiControlType = static::CONTROL_MULTI_SELECT;
 		$this->matching_goals->description = 'Goals that match our visitor.';
-		$this->matching_goals->availableValues = array_merge(array('0' => 'None'), $options);
+		$this->matching_goals->availableValues = array('0' => 'None') + $options;
 
 		$this->addSetting($this->matching_goals);
 	}
@@ -204,7 +205,7 @@ class Settings extends \Piwik\Plugin\Settings {
 
 	private function createSpecialUrlsSetting() {
 		$this->special_urls = new SystemSetting('special_urls', 'Special urls');
-		$this->special_urls->readableByCurrentUser = true;
+		//$this->special_urls->readableByCurrentUser = true;
 		$this->special_urls->uiControlType = static::CONTROL_TEXTAREA;
 		$this->special_urls->description = 'Special urls are listed one in each line. Score is provided at the end separated by semicolon (e.g. http://example.com;3)';
 		$this->special_urls->defaultValue = "http://example.com;3";

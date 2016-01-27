@@ -113,9 +113,9 @@ class GetVisitorsScores extends Base {
 	 * limit the audience by overwriting this method.
 	 *
 	 * @return bool
-	public function isEnabled()
-	{
-	return Piwik::hasUserSuperUserAccess()
-	}
 	 */
+	public function isEnabled() {
+		return Piwik::hasUserSuperUserAccess();
+	}
+
 }

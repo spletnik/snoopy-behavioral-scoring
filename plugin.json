@@ -1,6 +1,6 @@
 {
     "name": "SnoopyBehavioralScoring",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "User behaviour scoring plugin for piwik. It allows you to score your visitors depending on goals reached, pages visited, email campaigns opened and other factors. It has a robust scoring methodology for heating and cooling visitor score.",
     "keywords": ["behaviour score", "behavior score", "behaviour", "behavior", "snoopy", "score", "report", "lead scorinng", "behaviour scoring", "behavior scoring", "behavioral scoring"],
     "license": "GPL v3+",

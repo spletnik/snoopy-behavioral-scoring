@@ -86,7 +86,7 @@ __When does my visitors gets scored.__
 When they reach specified goal in plugin settings.
 
 ## Changelog
-
+0.1.2 - Bugfix for settings + Fixed fatal error on first calculation + Fixed permissions problems
 0.1.1 - Readme changes + minor fixes
 0.1.0 - Initial version
 

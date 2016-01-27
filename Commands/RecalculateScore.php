@@ -369,12 +369,13 @@ class RecalculateScore extends ConsoleCommand {
 			}
 
 			//Calculate cooling from last visit to now
-			$sinceLastVisit = $last_date->diff(new \DateTime("now"));
-			if ($full_debug) {
-				$output->writeln(sprintf("<comment>Days since last visit: %s</comment>", abs($sinceLastVisit->format("%a"))));
+			if (count($visits) > 0) {
+				$sinceLastVisit = $last_date->diff(new \DateTime("now"));
+				if ($full_debug) {
+					$output->writeln(sprintf("<comment>Days since last visit: %s</comment>", abs($sinceLastVisit->format("%a"))));
+				}
+				$visitor_score = $this->calculateCooling($visitor_score, 1, $cooling_factor, abs($sinceLastVisit->format("%a")));
 			}
-			$visitor_score = $this->calculateCooling($visitor_score, 1, $cooling_factor, abs($sinceLastVisit->format("%a")));
-
 			if ($visitor_score < 0) {
 				$visitor_score = 0;
 			}

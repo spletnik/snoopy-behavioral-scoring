@@ -125,7 +125,7 @@ class API extends \Piwik\Plugin\API {
 	 * @return Boolean
 	 */
 	public function storeVisitorData($idvisitor, $data) {
-		\Piwik\Piwik::checkUserHasSuperUserAccess();
+		\Piwik\Piwik::checkUserHasSomeViewAccess();
 		Db::query("	INSERT INTO " . Common::prefixTable("snoopy_visitors") . " (idvisitor, custom_1, custom_2, custom_3, custom_4, custom_5, created_at)
 					VALUES(?, ?, ?, ?, ?, ?, NOW()) ON DUPLICATE KEY UPDATE
 						custom_1=VALUES(custom_1),
@@ -142,7 +142,8 @@ class API extends \Piwik\Plugin\API {
 	}
 
 	public function getVisitorEmail($idvisitor) {
-		\Piwik\Piwik::checkUserHasSuperUserAccess();
+		\Piwik\Piwik::checkUserHasSomeViewAccess();
+
 		$table = new DataTable();
 		$json_data = Db::fetchRow("	SELECT custom_5 FROM " . Common::prefixTable("snoopy_visitors") . "
 									WHERE idvisitor = ?",
@@ -171,7 +172,7 @@ class API extends \Piwik\Plugin\API {
 	}
 
 	public function getVisitorEmailFromJson($json_data) {
-		\Piwik\Piwik::checkUserHasSuperUserAccess();
+		\Piwik\Piwik::checkUserHasSomeViewAccess();
 		$table = new DataTable();
 
 		$iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator(json_decode($json_data)));
@@ -193,7 +194,6 @@ class API extends \Piwik\Plugin\API {
 
 	public function matchVisitorsEmail() {
 		$table = new DataTable();
-		\Piwik\Piwik::checkUserHasSuperUserAccess();
 		$visitors = Db::fetchAll("	SELECT DISTINCT idvisitor FROM " . Common::prefixTable("snoopy_visitors"));
 
 		//$visitors_to_score = \Piwik\API\Request::processRequest('Snoopy.getVisitorEmail', array('idvisitor' => $visitor));
